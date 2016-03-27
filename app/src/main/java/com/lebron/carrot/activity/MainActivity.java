@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SelfPage.class);
                 startActivity(intent);
-                //Activity的启动动画
+                //Activity的启动动画 anim属于补间动画  animator属于属性动画
                 overridePendingTransition(R.anim.start_left, R.anim.end_right);
                 drawer.closeDrawer(GravityCompat.START);
             }
