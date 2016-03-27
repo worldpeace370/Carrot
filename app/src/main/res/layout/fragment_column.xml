@@ -1,0 +1,45 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.lebron.carrot.fragments.LineFragment">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView android:id="@+id/textView_date"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="日期：2016-03-21"/>
+            <lecho.lib.hellocharts.view.ColumnChartView
+                android:id="@+id/column_chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="hahahahaahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhahaha
+                haahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhaahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                haahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhaahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+                android:gravity="center"
+                android:textSize="40sp"/>
+            <com.lebron.carrot.view.MyListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/username">
+
+            </com.lebron.carrot.view.MyListView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</FrameLayout>
+

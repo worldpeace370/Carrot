@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ListViewFragment">
+
+
+    <com.lebron.carrot.view.MyNestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--重写PullToRefreshListView的onMeasure方法，才能见到ListView,并且可以往上推动时，ToolBar收缩
+        但是下拉刷新功能不能用，如果下拉刷新功能可以用，必须得自定义NestedScrollView，重写onInterceptTouchEvent（）
+        ,返回false，但是这个时候往上推动时，ToolBar不收缩了，好尴尬-->
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/pull_to_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+    </com.lebron.carrot.view.MyNestedScrollView>
+</FrameLayout>

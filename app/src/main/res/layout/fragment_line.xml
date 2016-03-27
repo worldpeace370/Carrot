@@ -1,0 +1,91 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.lebron.carrot.fragments.LineFragment">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/line_chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+                <Button android:id="@+id/button_pre"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/button_press"
+                    android:drawableLeft="@mipmap/djw"
+                    android:layout_gravity="center_horizontal"
+                    android:text="上一天"
+                    android:textSize="20sp"/>
+                <TextView android:id="@+id/textView_date"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@mipmap/fel"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="2016-03-21"/>
+                <Button android:id="@+id/button_next"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="20dp"
+                    android:drawableRight="@mipmap/djx"
+                    android:background="@drawable/button_press"
+                    android:layout_gravity="center_horizontal"
+                    android:text="下一天"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <!--<com.lebron.carrot.view.MyListView-->
+                <!--android:id="@+id/line_listView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"/>-->
+            <include
+                layout="@layout/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <include
+                layout="@layout/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <include
+                layout="@layout/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <include
+                layout="@layout/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <include
+                layout="@layout/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <include
+                layout="@layout/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</FrameLayout>
