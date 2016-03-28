@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity
         titleList.add("柱状视图");
         titleList.add("现场取景");
         //这是东芝电脑更新的
+        //这是东芝电脑更新的，第二次
     }
 
     /**
