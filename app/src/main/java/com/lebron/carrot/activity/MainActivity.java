@@ -25,7 +25,6 @@ import com.lebron.carrot.R;
 import com.lebron.carrot.adapter.ViewPagerAdapter;
 import com.lebron.carrot.fragments.ColumnFragment;
 import com.lebron.carrot.fragments.LineFragment;
-import com.lebron.carrot.fragments.ListViewFragment;
 import com.lebron.carrot.manager.MyActivityManager;
 
 import java.util.ArrayList;
@@ -102,6 +101,7 @@ public class MainActivity extends AppCompatActivity
         titleList.add("现场取景");
         //这是东芝电脑更新的
         //这是东芝电脑更新的，第二次
+        //这是惠普电脑更新的。。。
     }
 
     /**
