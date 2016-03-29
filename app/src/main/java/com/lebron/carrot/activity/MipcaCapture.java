@@ -115,9 +115,9 @@ public class MipcaCapture extends Activity implements Callback {
      *扫描完成之后将扫描到的结果和二维码的bitmap当初参数传递到
      *handleDecode(Result result, Bitmap barcode)里面
      * @param result
-     * @param barcode
+     * @param bitmap
      */
-    public void handleDecode(Result result, Bitmap barcode) {
+    public void handleDecode(Result result, Bitmap bitmap) {
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String resultString = result.getText();
@@ -127,7 +127,7 @@ public class MipcaCapture extends Activity implements Callback {
             Intent resultIntent = new Intent(this, QRCodeResult.class);
             Bundle bundle = new Bundle();
             bundle.putString("result", resultString);
-            bundle.putParcelable("bitmap", barcode);
+            bundle.putParcelable("bitmap", bitmap);
             resultIntent.putExtras(bundle);
             startActivity(resultIntent);
         }
