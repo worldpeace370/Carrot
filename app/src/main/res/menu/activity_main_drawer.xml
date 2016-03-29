@@ -16,7 +16,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@mipmap/qrcode"
+            android:icon="@mipmap/ic_sao_1_sao"
             android:title="QRCode" />
         <item
             android:id="@+id/nav_gallery"
