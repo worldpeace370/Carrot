@@ -17,7 +17,6 @@ import com.lebron.carrot.R;
  */
 public class QRCodeResult extends Activity {
 
-    private final static int SCANNIN_GREQUEST_CODE = 1;
     private Button button_back;
     /**
      * 显示扫描结果
@@ -41,10 +40,12 @@ public class QRCodeResult extends Activity {
         button_back = (Button) findViewById(R.id.button_back);
         //此活动刚启动就跳转到二维码扫描界面，这里用的是startActivityForResult跳转
         //扫描完了之后调到该界面
-        Intent intent = new Intent();
-        intent.setClass(QRCodeResult.this, MipcaCapture.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivityForResult(intent, SCANNIN_GREQUEST_CODE);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        textView_qrcode_title.setText("扫描结果");
+        result = bundle.getString("result");
+        textView_showInfo.setText(result);
+        imageView_photo.setImageBitmap((Bitmap) bundle.getParcelable("bitmap"));
         //按下返回键时销毁活动
         button_back.setOnClickListener(new View.OnClickListener() {
 
@@ -72,22 +73,8 @@ public class QRCodeResult extends Activity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case SCANNIN_GREQUEST_CODE:
-                if (resultCode == RESULT_OK) {
-                    Bundle bundle = data.getExtras();
-                    textView_qrcode_title.setText("扫描结果");
-                    result = bundle.getString("result");
-                    textView_showInfo.setText(result);
-                    imageView_photo.setImageBitmap((Bitmap)bundle.getParcelable("bitmap"));
-                }
-                break;
-
-            default:
-                break;
-        }
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

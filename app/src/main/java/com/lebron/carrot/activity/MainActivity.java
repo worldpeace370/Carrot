@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.action_upload:
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, QRCodeResult.class);
+                intent.setClass(MainActivity.this, MipcaCapture.class);
                 startActivity(intent);
                 break;
         }
