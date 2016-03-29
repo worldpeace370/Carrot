@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lebron.carrot">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:name=".manager.MyApplication"
         android:allowBackup="true"
@@ -20,6 +22,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SelfPage"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".activity.QRCodeResult"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".activity.MipcaCapture"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
