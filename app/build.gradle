@@ -33,4 +33,5 @@ dependencies {
     compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.alibaba:fastjson:latest.integration'
+    compile files('libs/zxing.jar')
 }
