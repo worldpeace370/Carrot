@@ -3,6 +3,7 @@ package com.lebron.carrot.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity
         //这是东芝电脑更新的，第二次
         //这是惠普电脑更新的。。。
     }
-
+    private Handler handler = new Handler();
     /**
      *用户头像的点击事件，跳转到个人主页中去
      */
@@ -177,7 +178,9 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, "search", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_upload:
-                Toast.makeText(MainActivity.this, "upload", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, QRCodeResult.class);
+                startActivity(intent);
                 break;
         }
 
@@ -187,11 +190,11 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        // Handle navigation com.lebron.view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
