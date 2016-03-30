@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_search:
                 Toast.makeText(MainActivity.this, "search", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.action_upload:
+            case R.id.action_qrcode:
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, MipcaCapture.class);
                 startActivity(intent);
