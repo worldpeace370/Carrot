@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
@@ -16,6 +17,7 @@ import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.net.Uri;
 import android.nfc.FormatException;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +25,7 @@ import android.os.Message;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -42,6 +45,7 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 import com.lebron.camera.CameraManager;
 import com.lebron.carrot.R;
+import com.lebron.carrot.utils.PhotoChoiceUtils;
 import com.lebron.decoding.CaptureActivityHandler;
 import com.lebron.decoding.InactivityTimer;
 import com.lebron.decoding.RGBLuminanceSource;
@@ -99,11 +103,14 @@ public class MipcaCapture extends Activity implements Callback {
         button_photos.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                innerIntent.setType("image/*");
-                innerIntent.addCategory(Intent.CATEGORY_OPENABLE);
-                Intent wrapperIntent = Intent.createChooser(innerIntent, "选择二维码图片");
-                MipcaCapture.this.startActivityForResult(wrapperIntent, REQUEST_CODE);
+//                Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT);
+//                innerIntent.setType("image/*");
+//                innerIntent.addCategory(Intent.CATEGORY_OPENABLE);
+//                Intent wrapperIntent = Intent.createChooser(innerIntent, "选择二维码图片");
+//                MipcaCapture.this.startActivityForResult(wrapperIntent, REQUEST_CODE);
+                Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+                MipcaCapture.this.startActivityForResult(intent, REQUEST_CODE);
             }
         });
 
@@ -123,36 +130,31 @@ public class MipcaCapture extends Activity implements Callback {
         if (resultCode == RESULT_OK){ //选择相片成功后，系统的返回结果码
             switch (requestCode){  //startActivityForResult携带的请求码
                 case REQUEST_CODE:
-                    //获取选中图片的路径
-                    Cursor cursor = getContentResolver().query(data.getData(), null, null, null, null);
-                    if (cursor != null){
-                        if (cursor.moveToFirst()){
-                            photoPath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                        }
-                        cursor.close();
-                        progressDialog = new ProgressDialog(MipcaCapture.this);
-                        progressDialog.setMessage("正在扫描...");
-                        progressDialog.setCancelable(false);
-                        progressDialog.show();
-                        //开启子线程扫描解析，防止ANR异常Application Not Responding
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Result result = scanningImage(photoPath);
-                                if (null != result){
-                                    Message msg1 = mHandler.obtainMessage();
-                                    msg1.what = PARSE_BARCODE_SUC;
-                                    msg1.obj = result.getText();
-                                    mHandler.sendMessage(msg1);
-                                }else {
-                                    Message msg2 = mHandler.obtainMessage();
-                                    msg2.what = PARSE_BARCODE_FAIL;
-                                    msg2.obj = "Scan failed!";
-                                    mHandler.sendMessage(msg2);
-                                }
+                    //4.4版本以后获取相册图片路径的新方法
+                    photoPath = PhotoChoiceUtils.getImageAbsolutePath(this, data.getData());
+
+                    progressDialog = new ProgressDialog(MipcaCapture.this);
+                    progressDialog.setMessage("正在扫描...");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+                    //开启子线程扫描解析，防止ANR异常Application Not Responding
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Result result = scanningImage(photoPath);
+                            if (null != result){
+                                Message msg1 = mHandler.obtainMessage();
+                                msg1.what = PARSE_BARCODE_SUC;
+                                msg1.obj = result.getText();
+                                mHandler.sendMessage(msg1);
+                            }else {
+                                Message msg2 = mHandler.obtainMessage();
+                                msg2.what = PARSE_BARCODE_FAIL;
+                                msg2.obj = "Scan failed!";
+                                mHandler.sendMessage(msg2);
                             }
-                        }).start();
-                    }
+                        }
+                    }).start();
                     break;
             }
         }
