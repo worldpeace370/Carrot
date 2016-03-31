@@ -34,5 +34,5 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.alibaba:fastjson:latest.integration'
     compile files('libs/zxing.jar')
-    compile 'com.android.support:palette-v7:24.0.0-alpha1'
+    compile 'com.android.support:palette-v7:23.2.0'
 }
