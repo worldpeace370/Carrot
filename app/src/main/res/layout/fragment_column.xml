@@ -24,20 +24,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 />
-            <TextView
+            <include
+                layout="@layout/cardview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hahahahaahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhahaha
-                haahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhaahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-                haahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhaahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
-                android:gravity="center"
-                android:textSize="40sp"/>
-            <com.lebron.carrot.view.MyListView
+                android:layout_height="wrap_content"/>
+            <include
+                layout="@layout/cardview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:entries="@array/username">
+                android:layout_height="wrap_content"/>
+            <include
+                layout="@layout/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <include
+                layout="@layout/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <include
+                layout="@layout/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <include
+                layout="@layout/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-            </com.lebron.carrot.view.MyListView>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
