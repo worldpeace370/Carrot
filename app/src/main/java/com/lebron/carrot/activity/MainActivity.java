@@ -2,6 +2,9 @@ package com.lebron.carrot.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +13,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -42,13 +46,14 @@ public class MainActivity extends AppCompatActivity
     private List<String> titleList = new ArrayList<>();
     private DrawerLayout drawer;
     private NavigationView navigationView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MyActivityManager.getInstance().addActivity(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -142,11 +147,45 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(viewPager);
+//        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                colorChange(position);
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
     }
 
-    /**
-     * 按下返回键，关闭抽屉布局
-     */
+//    private int[] pictureIdArr = new int[]{R.mipmap.bianmudog, R.mipmap.ic_launcher, R.mipmap.djw};
+//
+//    /**
+//     * 该函数在ViewPager页面切换的时候调用，用了5.0之后的技术Palette能根据当前页面的主色调来控制ToolBar,TabLayout等颜色
+//     * 相当于根据内容切换页面主题
+//     * @param position
+//     */
+//    private void colorChange(int position) {
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), pictureIdArr[position]);
+//        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+//            @Override
+//            public void onGenerated(Palette palette) {
+//                tabLayout.setBackgroundColor(palette.getLightVibrantColor(Color.BLACK));
+//                toolbar.setBackgroundColor(palette.getLightVibrantColor(Color.BLACK));
+//            }
+//        });
+//    }
+
+        /**
+         * 按下返回键，关闭抽屉布局
+         */
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
